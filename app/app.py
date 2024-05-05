@@ -26,8 +26,8 @@ def lform():
     if request.method == 'POST':
         name = str(request.form.get('name'))
         password = str(request.form.get('password'))
-        if check_login(name=name,password=password) == True:
-            return render_template('log_page.html', ans="Great")
-        return render_template('log_page.html', ans="noGreat")
+        if check_login(name=name,password=password) == False:
+            return render_template('log_page.html', ans="Неверный логин или пароль")
+        return render_template('log_page.html', ans="Вы успешно вошли")
 
 
