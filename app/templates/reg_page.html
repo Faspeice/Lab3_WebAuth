@@ -7,6 +7,11 @@
     <link rel="icon" href="{{ url_for('static', filename='image/favicon-32x32.png') }}" type="image/x-icon">
 </head>
 <body>
+<script>
+        function goToLogin() {
+            window.location.href = '/login';
+        }
+    </script>
 <form action="" method="post">
     <input type="text" name="username"
     placeholder="Имя пользователя">
@@ -23,6 +28,7 @@
 {% endwith %}
 
     <input type="submit" value="Зарегистрироваться">
+    <a href="#" class="login-link" onclick="goToLogin(); return false;">Уже есть учетная запись?</a>
 </form>
 
 </body>

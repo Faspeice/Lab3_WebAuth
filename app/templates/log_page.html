@@ -8,6 +8,12 @@
     <link rel="icon" href="{{ url_for('static', filename='image/favicon-32x32.png') }}" type="image/x-icon">
 </head>
 <body>
+  <script>
+        function goToRegistration() {
+            window.location.href = '/signup';
+        }
+    </script>
+
 <form action="" method="post">
      <input type="text" name="name" placeholder="Почта или логин">
     <input type="text" name="password" placeholder="Пароль">
@@ -21,7 +27,7 @@
   {% endif %}
 {% endwith %}
     <input type="submit" value="Войти">
+<a href="#" class="registration-link" onclick="goToRegistration(); return false;">Нет учетной записи?</a>
 </form>
-
 </body>
 </html>

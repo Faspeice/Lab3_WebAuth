@@ -9,7 +9,7 @@ body {
 }
 form {
     max-width: 400px;
-    margin: 200px auto;
+    margin: 100px auto;
     padding: 60px;
     background: white;
     border-radius: 10px;
@@ -50,6 +50,18 @@ input[type="submit"] {
 input[type="submit"]:hover {
     color: white;
 }
+a.login-link {
+            text-decoration: none;
+            color: gray;
+            transition: color 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+
+a.login-link:hover {
+            color: red;
+        }
 h1 {
     text-align: center;
 }
