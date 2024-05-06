@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница с фотографией на фоне</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .bg-image {
+            /* Измените 'background.jpg' на путь к вашему фоновому изображению */
+            background-image: url('/static/image/background_reg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            position: relative;
+            opacity: 0.8; /* Можете настроить прозрачность фона */
+            }
+    </style>
+</head>
+<body>
+
+<div class="bg-image"></div>
+
+
+</body>
+</html>

@@ -12,16 +12,18 @@
     placeholder="Имя пользователя">
     <input type="text" name="email" placeholder="Электронная почта">
     <input type="text" name="password" placeholder="Пароль">
-
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-message">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 
     <input type="submit" value="Зарегистрироваться">
 </form>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <p>{{ message }}</p>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+
 </body>
 </html>
