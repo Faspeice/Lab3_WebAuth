@@ -18,8 +18,10 @@ def rform():
         username = str(request.form.get('username'))
         password = str(request.form.get('password'))
         email = str(request.form.get('email'))
-        add_user(username=username,password=password,email=email)
-    return render_template('reg_page.html', ans="Great")
+        if username and password and email:
+            add_user(username=username,password=password,email=email)
+            return render_template('reg_page.html', ans="Great")
+        return render_template('reg_page.html', ans="noGreat")
 
 @app.route('/login', methods=['post', 'get'])
 def lform():

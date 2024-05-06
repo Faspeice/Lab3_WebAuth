@@ -1,4 +1,6 @@
+from flask import url_for, redirect, flash
 from sqlalchemy import  select
+from sqlalchemy.exc import IntegrityError
 
 from app.init import db
 from app.models import User
@@ -6,8 +8,12 @@ from app.models import User
 
 def add_user(username,email,password):
     user = User(username=username,email=email,password =password)
-    db.session.add(user)
-    db.session.commit()
+    try:
+        db.session.add(user)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        flash('Такой пользователь уже существует.')
 def check_login(name,password):
     stmn = select(User).where((User.username == name) | (User.email == name) & (User.password == password))
     result = db.session.execute(stmn)

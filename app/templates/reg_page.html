@@ -10,11 +10,18 @@
 <form action="" method="post">
     <input type="text" name="username"
     placeholder="Имя пользователя">
-    <input type="text" name="password" placeholder="Пароль">
     <input type="text" name="email" placeholder="Электронная почта">
+    <input type="text" name="password" placeholder="Пароль">
+
 
     <input type="submit" value="Зарегистрироваться">
 </form>
-<h1>{{ans}}</h1>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 </body>
 </html>
