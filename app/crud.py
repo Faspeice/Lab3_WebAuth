@@ -18,6 +18,6 @@ def check_login(name,password):
     stmn = select(User).where((User.username == name) | (User.email == name) & (User.password == password))
     result = db.session.execute(stmn)
     user = result.scalar_one_or_none()
-    if user:
-        return True
-    return False
+    if user and user.password == password:
+        return user
+    return None

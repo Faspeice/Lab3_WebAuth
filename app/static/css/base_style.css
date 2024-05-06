@@ -1,34 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('/static/image/background_reg.jpg');
+    background-image: url('/static/image/big_swiper_5.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position:  center;
     min-height: 100vh
 }
-form {
-    max-width: 400px;
-    margin: 200px auto;
-    padding: 60px;
-    background: white;
-    border-radius: 10px;
-}
-.flash-message {
-    color: red;
-    text-align: center;
-    margin-bottom: 20px;
-}
-input[type="text"],
-input[type="password"]{
-    width: 100%;
-    padding: 15px;
-    margin: 15px 0;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-}
-input[type="submit"] {
+
+button[type="submit"] {
      display: block;
+      position: absolute;
+       bottom: 20px;
+       left: 40%;
     width: 243px;
     height: 56px;
     margin: 10px auto;
@@ -47,9 +31,5 @@ input[type="submit"] {
     background-color: transparent;
     cursor: pointer;
 }
-input[type="submit"]:hover {
+button[type="submit"]:hover {
     color: white;
-}
-h1 {
-    text-align: center;
-}

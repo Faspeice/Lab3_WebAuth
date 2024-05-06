@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 
 from app.crud import add_user, check_login
 from app.init import app
@@ -12,9 +12,18 @@ def lpage():
     return render_template("log_page.html")
 @app.route('/base')
 def base():
-    return render_template("base.html")
+    if 'user_id' not in session:
+
+        return redirect(url_for('lform'))
+
+    return render_template('base.html')
 
 
+@app.route('/logout', methods=['post'])
+def logout():
+    session.pop('user_id', None)
+    session.pop('username', None)
+    return redirect(url_for('lform'))
 @app.route('/signup', methods=['post', 'get'])
 def rform():
     if request.method == 'POST':
@@ -31,9 +40,13 @@ def lform():
     if request.method == 'POST':
         name = str(request.form.get('name'))
         password = str(request.form.get('password'))
-        if check_login(name=name,password=password) == False:
+        user = check_login(name=name,password=password)
+        if not user:
             flash('Неверный логин или пароль.')
             return render_template('log_page.html')
-        return redirect(url_for('base'))
+        else:
+            session['user_id'] = user.id
+            return redirect(url_for('base'))
+
 
 
