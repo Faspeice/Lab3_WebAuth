@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='image/favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
 <form action="" method="post">
-    <input type="text" name="username">
-    <input type="text" name="password">
-    <input type="text" name="email">
+    <input type="text" name="username"
+    placeholder="Имя пользователя">
+    <input type="text" name="password" placeholder="Пароль">
+    <input type="text" name="email" placeholder="Электронная почта">
 
-    <input type="submit">
+    <input type="submit" value="Зарегистрироваться">
 </form>
 <h1>{{ans}}</h1>
 </body>

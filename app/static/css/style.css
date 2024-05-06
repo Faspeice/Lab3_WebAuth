@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/static/image/background_reg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+form {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+input[type="text"],
+input[type="password"]{
+width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+     display: block;
+    width: 193px;
+    height: 36px;
+    margin: 0 auto;
+    background-image: url(../image/piccha.png);
+    text-align: center;
+    line-height: 36px;
+    font-size: 16px;
+    color: #1e2731;
+    font-family: 'IMPACT';
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
+h1 {
+    text-align: center;
+}
