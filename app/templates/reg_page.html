@@ -11,8 +11,8 @@
 <form id="signup-form" action="{{ url_for('rform') }}" method="post">
     <input type="text" name="username"
     placeholder="Имя пользователя">
-    <input type="text" name="email" placeholder="Электронная почта">
-    <input type="text" name="password" placeholder="Пароль">
+    <input type="email" name="email" placeholder="Электронная почта">
+    <input type="password" name="password" placeholder="Пароль">
 
 <div id="signup-error" class="error-message"></div>
     <input type="submit" value="Зарегистрироваться">
