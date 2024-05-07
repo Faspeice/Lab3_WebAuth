@@ -8,26 +8,40 @@
     <link rel="icon" href="{{ url_for('static', filename='image/favicon-32x32.png') }}" type="image/x-icon">
 </head>
 <body>
+
+
+
+<form id="login-form" action="{{ url_for('lform') }}" method="post">
+     <input type="text" name="name" placeholder="Почта или логин">
+    <input type="text" name="password" placeholder="Пароль">
+    <div id="login-error" class="error-message"></div>
+    <input type="submit" value="Войти">
+<a href="#" class="registration-link" onclick="goToRegistration(); return false;">Нет учетной записи?</a>
+</form>
   <script>
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    fetch('{{ url_for('lform') }}', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            document.getElementById('login-error').textContent = data.error;
+        } else {
+            window.location.href = '{{ url_for('base') }}';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
+ <script>
         function goToRegistration() {
             window.location.href = '/signup';
         }
     </script>
-
-<form action="" method="post">
-     <input type="text" name="name" placeholder="Почта или логин">
-    <input type="text" name="password" placeholder="Пароль">
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class="flash-message">
-      {% for message in messages %}
-        <p>{{ message }}</p>
-      {% endfor %}
-    </div>
-  {% endif %}
-{% endwith %}
-    <input type="submit" value="Войти">
-<a href="#" class="registration-link" onclick="goToRegistration(); return false;">Нет учетной записи?</a>
-</form>
 </body>
 </html>

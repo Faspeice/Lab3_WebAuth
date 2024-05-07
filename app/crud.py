@@ -14,9 +14,11 @@ def add_user(username,email,password):
     try:
         db.session.add(user)
         db.session.commit()
+        return None
     except IntegrityError:
         db.session.rollback()
-        flash('Такой пользователь уже существует.')
+        return {'error': 'Такой пользователь уже существует'}
+
 def check_login(name,password):
     stmn = select(User).where((User.username == name) | (User.email == name) & (User.password == password))
     result = db.session.execute(stmn)

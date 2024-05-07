@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 
 from app.crud import add_user, check_login
 from app.init import app
+
 
 
 @app.route('/signup')
@@ -31,22 +32,27 @@ def rform():
         password = str(request.form.get('password'))
         email = str(request.form.get('email'))
         if username and password and email:
-            add_user(username=username,password=password,email=email)
-            return redirect(url_for('lform'))
-        return render_template('reg_page.html')
+            result = add_user(username=username,password=password,email=email)
+            if result is None:
+                return jsonify({})
+            else:
+                return jsonify(result)
+        else:
+            return jsonify({'error': 'Необходимо заполнить все поля'})
 
 @app.route('/login', methods=['post'])
 def lform():
     if request.method == 'POST':
         name = str(request.form.get('name'))
         password = str(request.form.get('password'))
-        user = check_login(name=name,password=password)
-        if not user:
-            flash('Неверный логин или пароль.')
-            return render_template('log_page.html')
+        if name and password:
+            user = check_login(name=name,password=password)
+            if not user:
+                return jsonify({'error': 'Неверный логин или пароль.'})
+            else:
+                session['user_id'] = user.id
+                return jsonify({})
         else:
-            session['user_id'] = user.id
-            return redirect(url_for('base'))
-
+            return jsonify({'error': 'Необходимо заполнить все поля'})
 
 
