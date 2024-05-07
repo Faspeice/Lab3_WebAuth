@@ -32,11 +32,14 @@ def rform():
         password = str(request.form.get('password'))
         email = str(request.form.get('email'))
         if username and password and email:
-            result = add_user(username=username,password=password,email=email)
-            if result is None:
-                return jsonify({})
+            if len(password) < 6:
+                return jsonify({'error': 'Пароль должен содержать минимум 6 символов'})
             else:
-                return jsonify(result)
+                result = add_user(username=username,password=password,email=email)
+                if result is None:
+                    return jsonify({})
+                else:
+                    return jsonify(result)
         else:
             return jsonify({'error': 'Необходимо заполнить все поля'})
 
