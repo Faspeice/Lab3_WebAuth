@@ -18,30 +18,6 @@
     <input type="submit" value="Войти">
 <a href="#" class="registration-link" onclick="goToRegistration(); return false;">Нет учетной записи?</a>
 </form>
-  <script>
-document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    fetch('{{ url_for('lform') }}', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            document.getElementById('login-error').textContent = data.error;
-        } else {
-            window.location.href = '{{ url_for('base') }}';
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
-</script>
- <script>
-        function goToRegistration() {
-            window.location.href = '/signup';
-        }
-    </script>
+<script src="{{ url_for('static', filename='js/log.js') }}"></script>
 </body>
 </html>

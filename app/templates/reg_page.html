@@ -7,11 +7,7 @@
     <link rel="icon" href="{{ url_for('static', filename='image/favicon-32x32.png') }}" type="image/x-icon">
 </head>
 <body>
-<script>
-        function goToLogin() {
-            window.location.href = '/login';
-        }
-    </script>
+
 <form id="signup-form" action="{{ url_for('rform') }}" method="post">
     <input type="text" name="username"
     placeholder="Имя пользователя">
@@ -21,26 +17,7 @@
 <div id="signup-error" class="error-message"></div>
     <input type="submit" value="Зарегистрироваться">
     <a href="#" class="login-link" onclick="goToLogin(); return false;">Уже есть учетная запись?</a>
-      <script>
-document.getElementById('signup-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    fetch('{{ url_for('rform') }}', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            document.getElementById('signup-error').textContent = data.error;
-        } else {
-            window.location.href = '{{ url_for('lform') }}';
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
-</script>
+<script src="{{ url_for('static', filename='js/reg.js') }}"></script>
 </form>
 
 </body>
