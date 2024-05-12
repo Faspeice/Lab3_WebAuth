@@ -4,7 +4,7 @@ from app.crud import  add_user,check_login
 from app.init import app, db
 from app.models import User
 
-class TestCrud(unittest.TestCase):
+class TestCaseCrud(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TEST_DATABASE_URL')

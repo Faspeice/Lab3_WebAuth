@@ -1,31 +1,31 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
-
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, Blueprint
 from app.crud import add_user, check_login
-from app.init import app
 
-
-
-@app.route('/signup')
+bp = Blueprint('my_blueprint', __name__)
+@bp.route('/')
+def nm():
+    return render_template("log_page.html")
+@bp.route('/signup')
 def rpage():
     return render_template("reg_page.html")
-@app.route('/login')
+@bp.route('/login')
 def lpage():
     return render_template("log_page.html")
-@app.route('/base')
+@bp.route('/base')
 def base():
     if 'user_id' not in session:
 
-        return redirect(url_for('lform'))
+        return redirect(url_for('my_blueprint.lpage'))
 
     return render_template('base.html')
 
 
-@app.route('/logout', methods=['post'])
+@bp.route('/logout', methods=['post'])
 def logout():
     session.pop('user_id', None)
     session.pop('username', None)
-    return redirect(url_for('lform'))
-@app.route('/signup', methods=['post', 'get'])
+    return redirect(url_for('my_blueprint.lform'))
+@bp.route('/signup', methods=['post', 'get'])
 def rform():
     if request.method == 'POST':
         username = str(request.form.get('username'))
@@ -43,7 +43,7 @@ def rform():
         else:
             return jsonify({'error': 'Необходимо заполнить все поля'})
 
-@app.route('/login', methods=['post'])
+@bp.route('/login', methods=['post'])
 def lform():
     if request.method == 'POST':
         name = str(request.form.get('name'))
@@ -57,5 +57,4 @@ def lform():
                 return jsonify({})
         else:
             return jsonify({'error': 'Необходимо заполнить все поля'})
-
 
