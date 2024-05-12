@@ -11,7 +11,7 @@
 
 
 
-<form id="login-form" action="{{ url_for('lform') }}" method="post">
+<form id="login-form" action="{{ url_for('my_blueprint.lform') }}" method="post">
      <input type="text" name="name" placeholder="Почта или логин">
     <input type="password" name="password" placeholder="Пароль">
     <div id="login-error" class="error-message"></div>
