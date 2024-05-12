@@ -1,15 +1,15 @@
 import os
 import unittest
 from app.crud import  add_user,check_login
-from app.init import app, db
+from app.init import bp, db
 from app.models import User
 
 class TestCaseCrud(unittest.TestCase):
     def setUp(self):
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TEST_DATABASE_URL')
-        self.app = app
-        self.app_context = app.app_context()
+        bp.config['TESTING'] = True
+        bp.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TEST_DATABASE_URL')
+        self.app = bp
+        self.app_context = bp.app_context()
         self.app_context.push()
         db.create_all()
     def test_signup(self):
